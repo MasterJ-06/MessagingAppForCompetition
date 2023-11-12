@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv');
+const hbs = require('hbs')
 dotenv.config();
 const ws = require("ws");
 const app = express()
@@ -9,11 +10,18 @@ const path = require("path")
 
 // Define paths for express config
 const PathDir = path.join (__dirname, '/public')
+const ViewsPath = path.join(__dirname, '/templates/views')
+const PartialsPath = path.join(__dirname, '/templates/partials')
 
 // Set up static directory to serve
 app.use(express.json())
 app.use(express.static(PathDir))
 app.use(userRouter)
+
+// Set up handlebars engine and views location
+app.set('view engine', 'hbs')
+app.set('views', ViewsPath)
+hbs.registerPartials(PartialsPath)
 
 //import the express-ws library and set up WebSocket support on the app instance.
 const expressWs = require('express-ws')(app);

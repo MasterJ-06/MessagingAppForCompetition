@@ -1,57 +1,386 @@
-html{
-    font-size: 62.5%;
-}
-body{
-    margin:0;
-    padding: 0;
-    display:flex;
-    justify-content:center;
-}
-.container{
-    margin-top: 5rem;
-    display:flex;
-    flex-direction:column;
-    width: 30%;
-    height: 70vh;
+/*html{*/
+/*    font-size: 62.5%;*/
+/*}*/
+/*body{*/
+/*    margin:0;*/
+/*    padding: 0;*/
+/*    display:flex;*/
+/*    justify-content:center;*/
+/*}*/
+.container2{
+    min-height: 73.5vh;
 }
 .msg{
-    color:blueviolet;
+    color: #94fde6;
     font-size: 2rem;
 }
 .msgCtn{
     margin: 1rem 0;
     color: white;
-    padding: 1rem 1rem;
-    background-color: blueviolet;
+    padding: 0.5rem;
+    background-color: #94fde6;
     border-radius: 6px;
-    font-size: 2rem
+    font-size: 2rem;
+    width: fit-content;
 }
 .msgForm{
-    display:flex;
-    flex-direction:row;
+    margin-top: auto;
+    bottom: 73px;
+    width: 97.9vw;
+    position: sticky;
 }
-.input{
-    height: 100%;
-    flex: 4;
-    margin-right: 2rem;
-    border:none;
+#inputBox {
+    margin-right: 1rem;
+    margin-left: 1rem;
+    border: none;
     border-radius: .5rem;
-    padding: 2px 1rem;
-    font-size: 1.5rem;
-    background-color:aliceblue;
+    font-size: 1rem;
+    background-color: aliceblue;
+    width: 92vw !important;
+    padding: 8px !important;
 }
-.input:focus{
+#inputBox:focus{
     background-color:white;
 }
 .btn{
-    height:5rem;
-    flex: 1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
     border-radius: .5rem;
-    background-color:blueviolet;
-    color: whitesmoke;
+    background-color:#94fde6;
+    color: #000000;
     border:none;
-    font-size: 1.6rem;
+    font-size: 1rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@200&display=swap');
+
+body {
+    color: #95ffe8;
+    font-family: 'Encode Sans SC', sans-serif;
+    background-color: rgb(51, 51, 51);
+    background-attachment: fixed;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 0;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex-grow: 1;
+}
+
+p {
+    padding-left: 10px;
+}
+
+.main-content p {
+    text-align: center;
+    line-height: 105%;
+}
+
+/* .my_form {
+  margin: 0 auto;
+} */
+
+.main-content {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#thumb {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+footer p {
+    padding-left: 25px;
+}
+
+footer {
+    color: #95ffe8;
+    padding: 10px;
+    box-shadow: 0 0 5px 6px rgba(0,0,0,0.4);
+    background-color: rgb(61, 61, 61);
+    position: sticky;
+    /*backdrop-filter: blur(3px);*/
+    margin-top: auto;
+    bottom: 0;
+    width: 98.7vw;
+}
+
+footer .name {
+    float: left;
+}
+
+h1 {
+    z-index: 2;
+    font-size: 64px;
+    margin-bottom: 16px;
+    margin-top: 75px;
+    padding-left: 10px;
+}
+
+.main-content h1 {
+    z-index: 2;
+    font-size: 64px;
+    margin-bottom: 16px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+a {
+    z-index: 2;
+    color: #95ffe8;
+}
+
+div.links a {
+    color: #95ffe8;
+    margin-right: 16px;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.portrait {
+    width: 190px;
+}
+
+input {
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    color: rgb(51, 51, 51);
+    padding: 8px;
+    background: #95ffe8;
+    margin: 8px 0;
+    border: none;
+    z-index: 2;
+}
+
+.msgForm {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#sortBy {
+    display: inline-block;
+    border: 1px solid #95ffe8;
+    background: #95ffe8;
+    color: rgb(51, 51, 51);
+    height: 33px;
+    width: 60.25;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    backdrop-filter: blur(2px);
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: rgb(51, 51, 51);
+    backdrop-filter: blur(2px);
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    max-width: 60%; /* Could be more or less, depending on screen size */
+    max-height: 80%;
+}
+
+/* The Close Button */
+.close {
+    /* Position it in the top right corner outside of the modal */
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+/* Close button on hover */
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Bordered form */
+form.modal-content animate {
+    border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the avatar image inside this container */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+/* Avatar image */
+img.avatar {
+    width: 18%;
+    height: 18%;
+    border-radius: 50%;
+}
+
+/* Add padding to containers */
+.container {
+    padding: 16px;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .cancelbtn {
+        width: 100%;
+    }
+}
+
+#logout_button {
+    display: none;
+}
+
+html body div.links {
+    background-color: rgba(255, 255, 255, .05);
+    backdrop-filter: blur(3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    text-align: center;
+    line-height: 200%;
+    padding: 6px;
+}
+
+html body div.links a {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.psw-colour {
+    color: #95ffe8;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 75px;
+    background-color: #95ffe8;
+    color: #000000;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 90%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #95ffe8 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+/* Style all font awesome icons */
+.fa {
+    padding: 0px;
+    font-size: 25px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+/* Add a hover effect if you want */
+.fa:hover {
+    opacity: 0.7;
+}
+
+/* Set a specific color for each brand */
+
+/* Facebook */
+.fa-globe {
+    color: #95ffe8;
+}
+
+/* Twitter */
+.fa-envelope {
+    color: #95ffe8;
+}
+
+footer .social {
+    padding-top: inherit;
+    float: right;
 }
