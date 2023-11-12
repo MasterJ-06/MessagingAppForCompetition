@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 const ws = require("ws");
 const app = express()
+const userRouter = require('./routers/user')
 const port = process.env.PORT
 const path = require("path")
 
@@ -10,7 +11,9 @@ const path = require("path")
 const PathDir = path.join (__dirname, '/public')
 
 // Set up static directory to serve
+app.use(express.json())
 app.use(express.static(PathDir))
+app.use(userRouter)
 
 //import the express-ws library and set up WebSocket support on the app instance.
 const expressWs = require('express-ws')(app);
@@ -31,7 +34,7 @@ async function main() {
     await mongoose.connect(mongoDB);
 }
 
-const MSGStore = require("./msg_storage_schema")
+const MSGStore = require("./models/msg_storage_schema")
 
 //middleware function is now defined that will be executed for every request to the server.
 app.use(function (req, res, next) {
