@@ -16,12 +16,30 @@
 }
 .msgCtn{
     margin: 1rem 0;
-    color: white;
+    color: #202020;
     padding: 0.5rem;
     background-color: #94fde6;
     border-radius: 6px;
     font-size: 2rem;
     width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 7px;
+    grid-auto-rows: max-content;
+}
+.msgdata {
+    grid-area: 1 / 1 / 2 / 3;
+}
+.sender {
+    grid-area: 2 / 1 / 3 / 2;
+    font-size: 1rem;
+    margin-right: 1vw;
+}
+.date {
+    grid-area: 2 / 2 / 3 / 3;
+    font-size: 1rem;
+    margin-left: 1vw;
 }
 .msgForm{
     margin-top: auto;

@@ -24,6 +24,8 @@ const MSGStoreSchema = new Schema({
         trim: true,
         required: true
     }
+}, {
+    timestamps: true
 });
 
 // Compile model from schema

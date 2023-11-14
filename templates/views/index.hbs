@@ -23,7 +23,32 @@
     </form>
     {{>footer}}
     <script type="text/javascript">
-        const ws = new WebSocket(`ws://${window.document.location.host}`);
+        document.addEventListener("DOMContentLoaded", function() {
+            // ping server for last 75 messages
+            fetch(`http://${window.document.location.host}/last75`).then((response) => {
+                response.json().then((data) => {
+                    const JSONdata = data
+                    JSONdata.forEach((x) => {
+                        const msgDiv = document.createElement('div');
+                        msgDiv.classList.add('msgCtn');
+                        let d = new Date(x.date)
+                        var hours = d.getHours();
+                        var minutes = d.getMinutes();
+                        var ampm = hours >= 12 ? 'pm' : 'am';
+                        hours = hours % 12;
+                        hours = hours ? hours : 12; // the hour '0' should be '12'
+                        minutes = minutes < 10 ? '0'+minutes : minutes;
+                        var strTime = hours + ':' + minutes + ' ' + ampm;
+                        msgDiv.innerHTML = `<div class="msgdata">${x.msg}</div><div class="sender">${x.sender}</div><div class="date">${strTime} ${d.getDay()}\/${d.getMonth()}\/${d.getFullYear()}</div>`;
+                        document.getElementById('messages').appendChild(msgDiv);
+                        document.getElementById('messages').lastChild.scrollIntoView()
+                    })
+                })
+            })
+        });
+    </script>
+    <script type="text/javascript">
+        const ws = new WebSocket(`ws://${window.document.location.host}/chat`);
         ws.binaryType = "blob";
         // Log socket opening and closing
         ws.addEventListener("open", event => {
@@ -43,19 +68,36 @@
                 };
                 reader.readAsText(message.data);
             } else {
-                console.log("Result2: " + message.data);
-                msgDiv.innerHTML = message.data;
+                let epoch = message.data.match(/%.+%/g)[0].replaceAll("%", "")
+                let d2 = new Date(parseInt(epoch))
+                var hours = d2.getHours();
+                var minutes = d2.getMinutes();
+                var ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '0'+minutes : minutes;
+                var strTime = hours + ':' + minutes + ' ' + ampm;
+                msgDiv.innerHTML = `<div class="msgdata">${message.data.match(/@.+@/g)[0].replaceAll("@", "")}</div><div class="sender">${message.data.match(/#.+#/g)[0].replaceAll("#", "")}</div><div class="date">${strTime} ${d2.getDay()}\/${d2.getMonth()}\/${d2.getFullYear()}</div>`;
                 document.getElementById('messages').appendChild(msgDiv);
-                console.log(document.getElementById('messages').lastChild.offsetHeight)
                 document.getElementById('messages').lastChild.scrollIntoView()
             }
         }
         const form = document.getElementById('msgForm');
         form.addEventListener('submit', (event) => {
             event.preventDefault();
+            let sender = "Anonymous"
+            if (document.cookie.match(/&.+&/g) != null) {
+                sender = document.cookie.match(/&.+&/g).toString().replaceAll("&", "")
+            }
+            // var today = new Date();
+            // var dd = String(today.getDate()).padStart(2, '0');
+            // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            // var yyyy = today.getFullYear();
+            // today = mm + '/' + dd + '/' + yyyy;
             const message = document.getElementById('inputBox').value;
-            ws.send(message);
+            ws.send(`@${message}@#${sender}#%${Date.now()}%`);
             document.getElementById('inputBox').value = ''
+            ws.close(1, "stop")
         })
     </script>
 </body>

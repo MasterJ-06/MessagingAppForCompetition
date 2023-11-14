@@ -44,14 +44,6 @@ async function main() {
 
 const MSGStore = require("./models/msg_storage_schema")
 
-//middleware function is now defined that will be executed for every request to the server.
-app.use(function (req, res, next) {
-    console.log('middleware');
-    req.testing = 'testing';
-    //next middleware function in the chain is called
-    return next();
-});
-
 // function broadcast(msg) {       // (4)
 //     for (const client of ws.clients) {
 //         if (client.readyState === ws.OPEN) {
@@ -61,43 +53,46 @@ app.use(function (req, res, next) {
 // }
 
 //route handler function is defined for the root path of the server.
-app.get('/', function(req, res, next){
-    console.log('get route', req.testing);
-    // res.send('Hello World!');
-    // res.end();
+app.get('/chat', function(req, res){
     res.render('index');
 });
 
-app.ws('/', function(ws, req) {
+app.ws('/chat', function(ws, req) {
     //an event listener is set up for incoming WebSocket messages.
     ws.on('message', async function (msg) {
-        console.log(MSGStore.find({ sender: "me" })["msg"])
+        // console.log(MSGStore.find({ sender: "me" })["msg"])
         console.log(msg);
+        let data = msg.match(/@.+@/g)[0].replaceAll("@", "");
+        let sender = msg.match(/#.+#/g)[0].replaceAll("#", "");
+        let date = msg.match(/%.+%/g)[0].replaceAll("%", "");
         saveMSG = new MSGStore({
-            sender: "me",
+            sender: sender,
             receiver: "alsoMe",
-            msg: msg,
-            date: Date.now()
+            msg: data,
+            date: date
         })
         console.log("saving model");
         await saveMSG.save();
-        ws.send(msg);
-        // for (const client of ws.clients) {
-        //     if (client.readyState === ws.OPEN) {
-        //         client.send(msg)
-        //     }
-        // }
+        // ws.send(msg);
+        for (const client of expressWs.getWss().clients) {
+            if (client.readyState === ws.OPEN) {
+                client.send(msg)
+            }
+        }
     });
     // ws.on('connection', (client) => {
     //     console.log('Client connected !')
-    //
     //     client.on('message', (msg) => {    // (3)
     //         console.log(`Message:${msg}`);
     //         // broadcast(msg)
     //     })
     // })
-    console.log('socket', req.testing);
 });
+
+app.get('/last75', async function (req, res) {
+    const messages = await MSGStore.find({}).sort({ createdAt: 1 }).limit(75)
+    res.send(messages)
+})
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
