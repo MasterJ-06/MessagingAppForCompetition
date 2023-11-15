@@ -25,7 +25,7 @@
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             // ping server for last 75 messages
-            fetch(`http://${window.document.location.host}/last75`).then((response) => {
+            fetch(`https://${window.document.location.host}/last75`).then((response) => {
                 response.json().then((data) => {
                     const JSONdata = data
                     JSONdata.forEach((x) => {
@@ -48,7 +48,7 @@
         });
     </script>
     <script type="text/javascript">
-        const ws = new WebSocket(`ws://${window.document.location.host}/chat`);
+        const ws = new WebSocket(`wss://${window.document.location.host}/chat`);
         ws.binaryType = "blob";
         // Log socket opening and closing
         ws.addEventListener("open", event => {
