@@ -62,8 +62,8 @@ app.ws('/chat', function(ws, req) {
     ws.on('message', async function (msg) {
         // console.log(MSGStore.find({ sender: "me" })["msg"])
         console.log(msg);
-        let data = msg.match(/@.+@/g)[0]//.replaceAll("@", "");
-        let sender = msg.match(/#.+#/g)[0]//.replaceAll("#", "");
+        let data = msg.match(/@.+@/g)[0].slice(1, -1)//.replaceAll("@", "");
+        let sender = msg.match(/#.+#/g)[0].slice(1, -1)//.replaceAll("#", "");
         let date = msg.match(/%.+%/g)[0].slice(1, -1)//.replaceAll("%", "");
         saveMSG = new MSGStore({
             sender: sender,
