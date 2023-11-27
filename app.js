@@ -52,10 +52,13 @@ const MSGStore = require("./models/msg_storage_schema")
 //     }
 // }
 
-//route handler function is defined for the root path of the server.
-app.get('/chat', function(req, res){
+function renderIndex(req, res){
     res.render('index');
-});
+}
+
+//route handler function is defined for the root path of the server.
+app.get('/chat', renderIndex);
+app.get('/chat*', renderIndex);
 
 app.ws('/chat', function(ws, req) {
     //an event listener is set up for incoming WebSocket messages.
