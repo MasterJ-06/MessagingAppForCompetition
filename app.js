@@ -65,9 +65,10 @@ app.ws('/chat', function(ws, req) {
         let data = msg.match(/@.+@/g)[0].slice(1, -1)//.replaceAll("@", "");
         let sender = msg.match(/#.+#/g)[0].slice(1, -1)//.replaceAll("#", "");
         let date = msg.match(/%.+%/g)[0].slice(1, -1)//.replaceAll("%", "");
+        let receiver = msg.match(/\^.+\^/g)[0].slice(1, -1)//.replaceAll("^", "");
         saveMSG = new MSGStore({
             sender: sender,
-            receiver: "alsoMe",
+            receiver: receiver,
             msg: data,
             date: new Date(parseInt(date))
         })
