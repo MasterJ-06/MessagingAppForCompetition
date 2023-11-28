@@ -95,9 +95,9 @@
             // var yyyy = today.getFullYear();
             // today = mm + '/' + dd + '/' + yyyy;
             const message = document.getElementById('inputBox').value;
-            ws.send(`@${message}@#${sender}#%${Date.now()}%^${window.document.location.pathname}^`);
+            ws.send(`@${message}@#${sender}#%${Date.now()}%^${window.document.location.pathname.toString()}^`);
             document.getElementById('inputBox').value = ''
-            // ws.close(1, "stop")
+            ws.close(1, "stop")
         })
     </script>
 </body>
