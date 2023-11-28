@@ -29,19 +29,23 @@
                 response.json().then((data) => {
                     const JSONdata = data
                     JSONdata.forEach((x) => {
-                        const msgDiv = document.createElement('div');
-                        msgDiv.classList.add('msgCtn');
-                        let d = new Date(x.date)
-                        var hours = d.getHours();
-                        var minutes = d.getMinutes();
-                        var ampm = hours >= 12 ? 'pm' : 'am';
-                        hours = hours % 12;
-                        hours = hours ? hours : 12; // the hour '0' should be '12'
-                        minutes = minutes < 10 ? '0'+minutes : minutes;
-                        var strTime = hours + ':' + minutes + ' ' + ampm;
-                        msgDiv.innerHTML = `<div class="msgdata">${x.msg}</div><div class="sender">${x.sender}</div><div class="date">${strTime} ${d.getDay()}\/${d.getMonth()}\/${d.getFullYear()}</div>`;
-                        document.getElementById('messages').appendChild(msgDiv);
-                        document.getElementById('messages').lastChild.scrollIntoView()
+                        console.log(x.receiver)
+                        console.log(window.document.location.pathname)
+                        if (x.receiver == window.document.location.pathname) {
+                            const msgDiv = document.createElement('div');
+                            msgDiv.classList.add('msgCtn');
+                            let d = new Date(x.date)
+                            var hours = d.getHours();
+                            var minutes = d.getMinutes();
+                            var ampm = hours >= 12 ? 'pm' : 'am';
+                            hours = hours % 12;
+                            hours = hours ? hours : 12; // the hour '0' should be '12'
+                            minutes = minutes < 10 ? '0' + minutes : minutes;
+                            var strTime = hours + ':' + minutes + ' ' + ampm;
+                            msgDiv.innerHTML = `<div class="msgdata">${x.msg}</div><div class="sender">${x.sender}</div><div class="date">${strTime} ${d.getDay()}\/${d.getMonth()}\/${d.getFullYear()}</div>`;
+                            document.getElementById('messages').appendChild(msgDiv);
+                            document.getElementById('messages').lastChild.scrollIntoView()
+                        }
                     })
                 })
             })
