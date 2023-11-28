@@ -58,9 +58,9 @@ function renderIndex(req, res){
 
 //route handler function is defined for the root path of the server.
 app.get('/chat', renderIndex);
-app.get('/chat*', renderIndex);
+app.get('/chat/*', renderIndex);
 
-app.ws('/chat', function(ws, req) {
+app.ws('/chatws', function(ws, req) {
     //an event listener is set up for incoming WebSocket messages.
     ws.on('message', async function (msg) {
         // console.log(MSGStore.find({ sender: "me" })["msg"])

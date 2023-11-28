@@ -48,7 +48,7 @@
         });
     </script>
     <script type="text/javascript">
-        const ws = new WebSocket(`wss://${window.document.location.host}/chat`);
+        const ws = new WebSocket(`wss://${window.document.location.host}/chatws`);
         ws.binaryType = "blob";
         // Log socket opening and closing
         ws.addEventListener("open", event => {
@@ -95,9 +95,10 @@
             // var yyyy = today.getFullYear();
             // today = mm + '/' + dd + '/' + yyyy;
             const message = document.getElementById('inputBox').value;
+            // console.log(`@${message}@#${sender}#%${Date.now()}%`)
             ws.send(`@${message}@#${sender}#%${Date.now()}%&${window.document.location.pathname.toString()}&`);
             document.getElementById('inputBox').value = ''
-            ws.close(1, "stop")
+            // ws.close(1, "stop")
         })
     </script>
 </body>
