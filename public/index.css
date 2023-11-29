@@ -174,7 +174,7 @@ button {
     color: rgb(51, 51, 51);
     padding: 8px;
     background: #95ffe8;
-    margin: 8px 0;
+    margin: 15px 0;
     border: none;
     z-index: 2;
 }
@@ -190,7 +190,7 @@ button {
     background: #95ffe8;
     color: rgb(51, 51, 51);
     height: 33px;
-    width: 60.25;
+    width: 60.25px;
 }
 
 /* The Modal (background) */
@@ -329,8 +329,11 @@ html body div.links {
 }
 
 html body div.links a {
-    margin-top: 20px;
+    margin-top: 15px;
     margin-bottom: 20px;
+    font-size: xx-large;
+    position: absolute;
+    left: 50%;
 }
 
 .psw-colour {

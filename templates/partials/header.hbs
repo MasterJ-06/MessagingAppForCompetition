@@ -3,9 +3,10 @@
         <script src="/js/first.js"></script>
         <script src="/js/logout.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <p id="roomName" style="float: left; font-size: large"></p>
         <a href="/">Chat</a>
-        <button id="signup_button" onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
-        <button id="login_button" onclick="document.getElementById('id01').style.display='block'">Login</button>
-        <button id="logout_button" onclick="logout()">Log Out</button>
+        <button id="signup_button" style="right: 20px; position: absolute" onclick="document.getElementById('id02').style.display='block'">Sign Up</button>
+        <button id="login_button" style="right: 90px; position: absolute" onclick="document.getElementById('id01').style.display='block'">Login</button>
+        <button id="logout_button" onclick="logout()" style="float: right">Log Out</button>
     </div>
 {{!-- </header> --}}

@@ -59,3 +59,8 @@ setInterval(() => {
         document.getElementById('login_button').style.display='none'
     }
 }, 100);
+
+document.addEventListener("DOMContentLoaded", function() {
+    const rname = document.getElementById("roomName")
+    rname.textContent = "Room Name: " + window.document.location.pathname.toString().replace("/chat/", "")
+});
