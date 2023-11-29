@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://masterjmessages.onrender.com/index.css">
+    <link rel="stylesheet" href="/styles.css">
+    <title>Minimalist chat App</title>
+</head>
+
+<body>
+    {{>login}}
+    {{>signup}}
+    {{>header}}
+    <div class="centered-form">
+        <div class="centered-form__box">
+            <h1>Join Chatroom</h1>
+            <form id="joinForm">
+                <label>Room</label>
+                <input type="text" name="room" placeholder="room" id="room" required>
+                <button>Join</button>
+            </form>
+        </div>
+    </div>
+    {{>footer}}
+    <script type="text/javascript">
+        const form = document.getElementById('joinForm');
+        form.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = document.getElementById("room")
+            window.location.href = `/chat/${input.value}`;
+        })
+    </script>
+</body>
+
+</html>

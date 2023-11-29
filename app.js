@@ -44,6 +44,10 @@ async function main() {
 
 const MSGStore = require("./models/msg_storage_schema")
 
+app.get('/', function (req, res) {
+    res.render('home');
+})
+
 // function broadcast(msg) {       // (4)
 //     for (const client of ws.clients) {
 //         if (client.readyState === ws.OPEN) {
