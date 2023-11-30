@@ -53,7 +53,7 @@
     border-radius: .5rem;
     font-size: 1rem;
     background-color: aliceblue;
-    width: 95% !important;
+    width: 90% !important;
     padding: 8px !important;
 }
 #inputBox:focus{
@@ -65,7 +65,7 @@
     color: #000000;
     border:none;
     font-size: 1rem;
-    width: 3%;
+    width: 70px;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@200&display=swap');
