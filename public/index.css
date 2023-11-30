@@ -44,7 +44,6 @@
 .msgForm{
     margin-top: auto;
     bottom: 73px;
-    width: 97.9vw;
     position: sticky;
 }
 #inputBox {
@@ -54,7 +53,7 @@
     border-radius: .5rem;
     font-size: 1rem;
     background-color: aliceblue;
-    width: 92vw !important;
+    width: 95% !important;
     padding: 8px !important;
 }
 #inputBox:focus{
@@ -66,6 +65,7 @@
     color: #000000;
     border:none;
     font-size: 1rem;
+    width: 3%;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Encode+Sans+SC:wght@200&display=swap');
@@ -124,9 +124,8 @@ footer {
     background-color: rgb(61, 61, 61);
     position: sticky;
     /*backdrop-filter: blur(3px);*/
-    margin-top: auto;
+    margin-top: 25px;
     bottom: 0;
-    width: 98.7vw;
 }
 
 footer .name {
